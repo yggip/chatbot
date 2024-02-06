@@ -41,6 +41,7 @@ def main():
 # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("add", add))
     dispatcher.add_handler(CommandHandler("help", help_command))
+    dispatcher.add_handler(CommandHandler("hello", hello))
 # To start the bot:
     updater.start_polling()
     updater.idle()
@@ -65,5 +66,17 @@ def add(update: Update, context: CallbackContext) -> None:
             redis1.get(msg).decode('UTF-8') + ' times.')
     except (IndexError, ValueError):
         update.message.reply_text('Usage: /add <keyword>')
+
+def hello(update, context):
+    message_text = update.message.text
+    if message_text.startswith('/hello'):
+        name = message_text.split(' ')[-1]  # Extract the name from the command
+        reply_message = f"Good day, {name}!"
+    else:
+        reply_message = chatgpt.submit(message_text)
+    logging.info("Update: " + str(update))
+    logging.info("context: " + str(context))
+    context.bot.send_message(chat_id=update.effective_chat.id, text=reply_message)
+
 if __name__ == '__main__':
     main()
