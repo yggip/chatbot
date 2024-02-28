@@ -1,0 +1,357 @@
+Windows PowerShell
+版权所有（C） Microsoft Corporation。保留所有权利。
+
+安装最新的 PowerShell，了解新功能和改进！https://aka.ms/PSWindows
+
+PS E:\git\chatbot> pip freeze > requirements.txt
+PS E:\git\chatbot>  fly launch --no-deploy
+Scanning source code
+Detected a Python app
+Using the following build configuration:
+        Builder: paketobuildpacks/builder:base
+Creating app in E:\git\chatbot
+We're about to launch your Python app on Fly.io. Here's what you're getting:
+
+Organization: 于承威              (fly launch defaults to the personal org)
+Name:         chatbot                (derived from your directory name)
+Region:       Hong Kong, Hong Kong   (this is the fastest region for you)
+App Machines: shared-cpu-1x, 1GB RAM (most apps need about 1GB of RAM)
+Postgres:     <none>                 (not requested)
+Redis:        <none>                 (not requested)
+
+? Do you want to tweak these settings before proceeding? Yes
+Opening https://fly.io/cli/launch/7dff00cbd52f9111f1bbc29935e02e4c ...
+
+Waiting for launch data... Done
+Created app 'chatbot-123456789' in organization 'personal'
+Admin URL: https://fly.io/apps/chatbot-123456789
+Hostname: chatbot-123456789.fly.dev
+Wrote config file fly.toml
+Validating E:\git\chatbot\fly.toml
+✓ Configuration is valid
+We have generated a simple Procfile for you. Modify it to fit your needs and run "fly deploy" to deploy your application.
+PS E:\git\chatbot> fly deploy --remote-only
+==> Verifying app config
+Validating E:\git\chatbot\fly.toml
+✓ Configuration is valid
+--> Verified app config
+==> Building image
+Remote builder fly-builder-polished-glade-4655 ready
+Remote builder fly-builder-polished-glade-4655 ready
+==> Building image with Buildpacks
+--> docker host: 20.10.12 linux x86_64
+base: Pulling from paketobuildpacks/builder
+Digest: sha256:17ea21162ba8c7717d3ead3ee3836a368aced7f02f2e59658e52029bd6d149e7
+Status: Image is up to date for paketobuildpacks/builder:base
+base-cnb: Pulling from paketobuildpacks/run
+Digest: sha256:1af9935d8987fd52b2266d288200c9482d1dd5529860bbf5bc2d248de1cb1a38
+Status: Image is up to date for paketobuildpacks/run:base-cnb
+===> ANALYZING
+Image with name "registry.fly.io/chatbot-123456789:cache" not found
+===> DETECTING
+6 of 9 buildpacks participating
+paketo-buildpacks/ca-certificates 3.6.3
+paketo-buildpacks/cpython         1.8.11
+paketo-buildpacks/pip             0.17.4
+paketo-buildpacks/pip-install     0.5.16
+paketo-buildpacks/python-start    0.14.11
+paketo-buildpacks/procfile        5.6.4
+===> RESTORING
+===> BUILDING
+
+Paketo Buildpack for CA Certificates 3.6.3
+  https://github.com/paketo-buildpacks/ca-certificates
+  Launch Helper: Contributing to layer
+    Creating /layers/paketo-buildpacks_ca-certificates/helper/exec.d/ca-certificates-helper
+Paketo Buildpack for CPython 1.8.11
+  Resolving CPython version
+    Candidate version sources (in priority order):
+                -> ""
+      <unknown> -> ""
+
+    Selected CPython version (using ): 3.10.12
+
+  Executing build process
+    Installing CPython 3.10.12
+      Completed in 3.199s
+
+  Generating SBOM for /layers/paketo-buildpacks_cpython/cpython
+      Completed in 0s
+
+
+  Configuring build environment
+    PYTHONPATH          -> "/layers/paketo-buildpacks_cpython/cpython"
+    PYTHONPYCACHEPREFIX -> "/tmp"
+
+  Configuring launch environment
+    PYTHONPATH -> "/layers/paketo-buildpacks_cpython/cpython"
+
+Paketo Buildpack for Pip 0.17.4
+  Resolving Pip version
+    Candidate version sources (in priority order):
+      <unknown> -> ""
+
+    Selected Pip version (using <unknown>): 23.1.2
+
+  Executing build process
+    Installing Pip 23.1.2
+      Completed in 11.073s
+
+  Generating SBOM for /layers/paketo-buildpacks_pip/pip
+      Completed in 0s
+
+  Configuring build environment
+    PYTHONPATH -> "/layers/paketo-buildpacks_pip/pip/lib/python3.10/site-packages:$PYTHONPATH"
+
+  Configuring launch environment
+    PYTHONPATH -> "/layers/paketo-buildpacks_pip/pip/lib/python3.10/site-packages:$PYTHONPATH"
+
+Paketo Buildpack for Pip Install 0.5.16
+  Executing build process
+    Running 'pip install --requirement requirements.txt --exists-action=w --cache-dir=/layers/paketo-buildpacks_pip-install/cache --compile --user --disable-pip-version-check'
+      Collecting anyio==4.2.0 (from -r requirements.txt (line 1))
+        Downloading anyio-4.2.0-py3-none-any.whl (85 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 85.5/85.5 kB 7.8 MB/s eta 0:00:00
+      Collecting APScheduler==3.6.3 (from -r requirements.txt (line 2))
+        Downloading APScheduler-3.6.3-py2.py3-none-any.whl (58 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.9/58.9 kB 17.7 MB/s eta 0:00:00
+      Collecting attrs==23.2.0 (from -r requirements.txt (line 3))
+        Downloading attrs-23.2.0-py3-none-any.whl (60 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.8/60.8 kB 21.1 MB/s eta 0:00:00
+      Collecting cachetools==4.2.2 (from -r requirements.txt (line 4))
+        Downloading cachetools-4.2.2-py3-none-any.whl (11 kB)
+      Collecting certifi==2023.11.17 (from -r requirements.txt (line 5))
+        Downloading certifi-2023.11.17-py3-none-any.whl (162 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 162.5/162.5 kB 38.6 MB/s eta 0:00:00
+      Collecting cffi==1.16.0 (from -r requirements.txt (line 6))
+        Downloading cffi-1.16.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (443 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 443.9/443.9 kB 71.4 MB/s eta 0:00:00
+      Collecting charset-normalizer==3.3.2 (from -r requirements.txt (line 7))
+        Downloading charset_normalizer-3.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (142 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 142.1/142.1 kB 40.1 MB/s eta 0:00:00
+      Collecting configparser==6.0.0 (from -r requirements.txt (line 8))
+        Downloading configparser-6.0.0-py3-none-any.whl (19 kB)
+      Collecting h11==0.14.0 (from -r requirements.txt (line 9))
+        Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 20.4 MB/s eta 0:00:00
+      Collecting httpcore==1.0.2 (from -r requirements.txt (line 10))
+        Downloading httpcore-1.0.2-py3-none-any.whl (76 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 76.9/76.9 kB 23.2 MB/s eta 0:00:00
+      Collecting httpx==0.25.2 (from -r requirements.txt (line 11))
+        Downloading httpx-0.25.2-py3-none-any.whl (74 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.0/75.0 kB 24.9 MB/s eta 0:00:00
+      Collecting idna==3.6 (from -r requirements.txt (line 12))
+        Downloading idna-3.6-py3-none-any.whl (61 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.6/61.6 kB 20.4 MB/s eta 0:00:00
+      Collecting logging==0.4.9.6 (from -r requirements.txt (line 13))
+        Downloading logging-0.4.9.6.tar.gz (96 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.0/96.0 kB 30.5 MB/s eta 0:00:00
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'done'
+      Collecting outcome==1.3.0.post0 (from -r requirements.txt (line 14))
+        Downloading outcome-1.3.0.post0-py2.py3-none-any.whl (10 kB)
+      Collecting pycparser==2.21 (from -r requirements.txt (line 15))
+        Downloading pycparser-2.21-py2.py3-none-any.whl (118 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 118.7/118.7 kB 29.6 MB/s eta 0:00:00
+      Collecting PySocks==1.7.1 (from -r requirements.txt (line 16))
+        Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)
+      Collecting python-telegram-bot==13.7 (from -r requirements.txt (line 17))
+        Downloading python_telegram_bot-13.7-py3-none-any.whl (490 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 490.1/490.1 kB 70.6 MB/s eta 0:00:00
+      Collecting pytz==2023.4 (from -r requirements.txt (line 18))
+        Downloading pytz-2023.4-py2.py3-none-any.whl (506 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 506.5/506.5 kB 64.1 MB/s eta 0:00:00
+      Collecting redis==5.0.1 (from -r requirements.txt (line 19))
+        Downloading redis-5.0.1-py3-none-any.whl (250 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 250.3/250.3 kB 63.4 MB/s eta 0:00:00
+      Collecting requests==2.31.0 (from -r requirements.txt (line 20))
+        Downloading requests-2.31.0-py3-none-any.whl (62 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.6/62.6 kB 21.4 MB/s eta 0:00:00
+      Collecting selenium==4.18.1 (from -r requirements.txt (line 21))
+        Downloading selenium-4.18.1-py3-none-any.whl (10.0 MB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 83.9 MB/s eta 0:00:00
+      Collecting setuptools==69.0.3 (from -r requirements.txt (line 22))
+        Downloading setuptools-69.0.3-py3-none-any.whl (819 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 819.5/819.5 kB 85.6 MB/s eta 0:00:00
+      Collecting six==1.16.0 (from -r requirements.txt (line 23))
+        Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+      Collecting sniffio==1.3.0 (from -r requirements.txt (line 24))
+        Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+      Collecting sortedcontainers==2.4.0 (from -r requirements.txt (line 25))
+        Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+      Collecting telegram==0.0.1 (from -r requirements.txt (line 26))
+        Downloading telegram-0.0.1.tar.gz (879 bytes)
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'done'
+      Collecting tornado==6.1 (from -r requirements.txt (line 27))
+        Downloading tornado-6.1.tar.gz (497 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 497.4/497.4 kB 73.4 MB/s eta 0:00:00
+        Installing build dependencies: started
+        Installing build dependencies: finished with status 'done'
+        Getting requirements to build wheel: started
+        Getting requirements to build wheel: finished with status 'done'
+        Preparing metadata (pyproject.toml): started
+        Preparing metadata (pyproject.toml): finished with status 'done'
+      Collecting trio==0.24.0 (from -r requirements.txt (line 28))
+        Downloading trio-0.24.0-py3-none-any.whl (460 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 460.2/460.2 kB 47.8 MB/s eta 0:00:00
+      Collecting trio-websocket==0.11.1 (from -r requirements.txt (line 29))
+        Downloading trio_websocket-0.11.1-py3-none-any.whl (17 kB)
+      Collecting typing_extensions==4.9.0 (from -r requirements.txt (line 30))
+        Downloading typing_extensions-4.9.0-py3-none-any.whl (32 kB)
+      Collecting tzdata==2023.4 (from -r requirements.txt (line 31))
+        Downloading tzdata-2023.4-py2.py3-none-any.whl (346 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 346.6/346.6 kB 64.0 MB/s eta 0:00:00
+      Collecting tzlocal==5.2 (from -r requirements.txt (line 32))
+        Downloading tzlocal-5.2-py3-none-any.whl (17 kB)
+      Collecting urllib3==1.26.18 (from -r requirements.txt (line 33))
+        Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 38.9 MB/s eta 0:00:00
+      Collecting wsproto==1.2.0 (from -r requirements.txt (line 34))
+        Downloading wsproto-1.2.0-py3-none-any.whl (24 kB)
+      Collecting exceptiongroup>=1.0.2 (from anyio==4.2.0->-r requirements.txt (line 1))
+        Downloading exceptiongroup-1.2.0-py3-none-any.whl (16 kB)
+      Collecting async-timeout>=4.0.2 (from redis==5.0.1->-r requirements.txt (line 19))
+        Downloading async_timeout-4.0.3-py3-none-any.whl (5.7 kB)
+      Collecting urllib3[socks]<3,>=1.26 (from selenium==4.18.1->-r requirements.txt (line 21))
+        Downloading urllib3-2.2.1-py3-none-any.whl (121 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.1/121.1 kB 34.6 MB/s eta 0:00:00
+      INFO: pip is looking at multiple versions of urllib3[socks] to determine which version is compatible with other requirements. This could take a while.
+        Downloading urllib3-2.2.0-py3-none-any.whl (120 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 120.9/120.9 kB 34.5 MB/s eta 0:00:00
+        Downloading urllib3-2.1.0-py3-none-any.whl (104 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 104.6/104.6 kB 29.5 MB/s eta 0:00:00
+        Downloading urllib3-2.0.7-py3-none-any.whl (124 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.2/124.2 kB 34.6 MB/s eta 0:00:00
+        Downloading urllib3-2.0.6-py3-none-any.whl (123 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.8/123.8 kB 24.5 MB/s eta 0:00:00
+        Downloading urllib3-2.0.5-py3-none-any.whl (123 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.8/123.8 kB 27.0 MB/s eta 0:00:00
+        Downloading urllib3-2.0.4-py3-none-any.whl (123 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.9/123.9 kB 30.1 MB/s eta 0:00:00
+        Downloading urllib3-2.0.3-py3-none-any.whl (123 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.6/123.6 kB 31.4 MB/s eta 0:00:00
+      INFO: pip is looking at multiple versions of urllib3[socks] to determine which version is compatible with other requirements. This could take a while.
+        Downloading urllib3-2.0.2-py3-none-any.whl (123 kB)
+           ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.2/123.2 kB 35.9 MB/s eta 0:00:00
+      Building wheels for collected packages: logging, telegram, tornado
+        Building wheel for logging (pyproject.toml): started
+        Building wheel for logging (pyproject.toml): finished with status 'done'
+        Created wheel for logging: filename=logging-0.4.9.6-py3-none-any.whl size=29513 sha256=778e2cfd7da067df4e53207dbebadc9276797fa5fc8471976f995f650996f231
+        Stored in directory: /layers/paketo-buildpacks_pip-install/cache/wheels/cd/04/d7/6522b8b9cafdd30f40e194e302ee67362c42cb07545768f7c5
+        Building wheel for telegram (pyproject.toml): started
+        Building wheel for telegram (pyproject.toml): finished with status 'done'
+        Created wheel for telegram: filename=telegram-0.0.1-py3-none-any.whl size=1293 sha256=88b98b236fb57155c8c5555763d37560a1afcd572d89058a24f991d199fbcf0b
+        Stored in directory: /layers/paketo-buildpacks_pip-install/cache/wheels/f3/f2/16/dc6d6c6c7e0422206fec62833039a2b4082de3b85e55d32b52
+        Building wheel for tornado (pyproject.toml): started
+        Building wheel for tornado (pyproject.toml): finished with status 'done'
+        Created wheel for tornado: filename=tornado-6.1-cp310-cp310-linux_x86_64.whl size=416708 sha256=d27ef41440d1516604dc9bb36e63ad29d945dd32c0cd7e7dc2f5aa7e633e93e3
+        Stored in directory: /layers/paketo-buildpacks_pip-install/cache/wheels/80/32/8d/21cf0fa6ee4e083f6530e5b83dfdfa9489a3890d320803f4c7
+      Successfully built logging telegram tornado
+      Installing collected packages: telegram, sortedcontainers, pytz, logging, urllib3, tzlocal, tzdata, typing_extensions, tornado, sniffio, six, setuptools, PySocks, pycparser, idna, h11, exceptiongroup, configparser, charset-normalizer, certifi, cachetools, attrs, async-timeout, wsproto, requests, redis, outcome, httpcore, cffi, APScheduler, anyio, trio, python-telegram-bot, httpx, trio-websocket, selenium
+        WARNING: The script normalizer is installed in '/layers/paketo-buildpacks_pip-install/packages/bin' which is not on PATH.
+        Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+        WARNING: The script httpx is installed in '/layers/paketo-buildpacks_pip-install/packages/bin' which is not on PATH.
+        Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+      Successfully installed APScheduler-3.6.3 PySocks-1.7.1 anyio-4.2.0 async-timeout-4.0.3 attrs-23.2.0 cachetools-4.2.2 certifi-2023.11.17 cffi-1.16.0 charset-normalizer-3.3.2 configparser-6.0.0 exceptiongroup-1.2.0 h11-0.14.0 httpcore-1.0.2 httpx-0.25.2 idna-3.6 logging-0.4.9.6 outcome-1.3.0.post0 pycparser-2.21 python-telegram-bot-13.7 pytz-2023.4 redis-5.0.1 requests-2.31.0 selenium-4.18.1 setuptools-69.0.3 six-1.16.0 sniffio-1.3.0 sortedcontainers-2.4.0 telegram-0.0.1 tornado-6.1 trio-0.24.0 trio-websocket-0.11.1 typing_extensions-4.9.0 tzdata-2023.4 tzlocal-5.2 urllib3-1.26.18 wsproto-1.2.0
+      Completed in 18.32s
+
+  Generating SBOM for /layers/paketo-buildpacks_pip-install/packages
+      Completed in 7ms
+
+  Configuring build environment
+    PYTHONPATH -> "/layers/paketo-buildpacks_pip-install/packages/lib/python3.10/site-packages:$PYTHONPATH"
+
+  Configuring launch environment
+    PYTHONPATH -> "/layers/paketo-buildpacks_pip-install/packages/lib/python3.10/site-packages:$PYTHONPATH"
+
+Paketo Buildpack for Python Start 0.14.11
+  Assigning launch processes:
+    web (default): python
+
+
+Paketo Buildpack for Procfile 5.6.4
+  https://github.com/paketo-buildpacks/procfile
+  Process types:
+    web: python chatbot1.py
+===> EXPORTING
+Adding layer 'paketo-buildpacks/ca-certificates:helper'
+Adding layer 'paketo-buildpacks/cpython:cpython'
+Adding layer 'paketo-buildpacks/pip-install:packages'
+Adding layer 'buildpacksio/lifecycle:launch.sbom'
+Adding 1/1 app layer(s)
+Adding layer 'buildpacksio/lifecycle:launcher'
+Adding layer 'buildpacksio/lifecycle:config'
+Adding layer 'buildpacksio/lifecycle:process-types'
+Adding label 'io.buildpacks.lifecycle.metadata'
+Adding label 'io.buildpacks.build.metadata'
+Adding label 'io.buildpacks.project.metadata'
+Setting default process type 'web'
+Saving registry.fly.io/chatbot-123456789:cache...
+*** Images (e20a136aa22a):
+      registry.fly.io/chatbot-123456789:cache
+      registry.fly.io/chatbot-123456789:deployment-01HQMHNA1610S2A4S9JH5KQW0J
+Adding cache layer 'paketo-buildpacks/cpython:cpython'
+Adding cache layer 'paketo-buildpacks/pip:pip'
+Adding cache layer 'paketo-buildpacks/pip-install:cache'
+Adding cache layer 'paketo-buildpacks/pip-install:packages'
+Adding cache layer 'buildpacksio/lifecycle:cache.sbom'
+--> Building image done
+==> Pushing image to fly
+The push refers to repository [registry.fly.io/chatbot-123456789]
+83d85471d9f8: Pushed
+3387acc27b3c: Pushed
+8812c86dc680: Pushed
+d1fbea9f6da0: Pushed
+42659d8115c9: Pushed
+c0d2bb14ba73: Pushed
+e6d3999803da: Pushed
+6fcdf2880dd8: Pushed
+1eb5983d7301: Pushed
+39d381810cef: Pushed
+115fc79fb3d1: Pushed
+fd93afbbe1ce: Pushed
+f92983442b23: Pushed
+4d274d05ee12: Pushed
+548a79621a42: Pushed
+deployment-01HQMHNA1610S2A4S9JH5KQW0J: digest: sha256:78010428affebed5f647717b0e7349d28f1fa97d75d667d7a23ac268a015be96 size: 3453
+--> Pushing image done
+image: registry.fly.io/chatbot-123456789:deployment-01HQMHNA1610S2A4S9JH5KQW0J
+image size: 318 MB
+
+Watch your deployment at https://fly.io/apps/chatbot-123456789/monitoring
+
+Provisioning ips for chatbot-123456789
+  Dedicated ipv6: 2a09:8280:1::2c:1ca4:0
+  Shared ipv4: 66.241.125.219
+  Add a dedicated ipv4 with: fly ips allocate-v4
+
+This deployment will:
+ * create 2 "app" machines
+
+No machines in group app, launching a new machine
+
+WARNING The app is not listening on the expected address and will not be reachable by fly-proxy.
+You can fix this by configuring your app to listen on the following addresses:
+  - 0.0.0.0:8000
+Found these processes inside the machine with open listening sockets:
+  PROCESS        | ADDRESSES
+-----------------*---------------------------------------
+  /.fly/hallpass | [fdaa:6:db4b:a7b:1a3:9cfb:1fd3:2]:22
+
+Creating a second machine to increase service availability
+Finished launching new machines
+-------
+ ✔ Machine 17811ee6ae9648 [app] update finished: success
+-------
+Checking DNS configuration for chatbot-123456789.fly.dev
+
+Visit your newly deployed app at https://chatbot-123456789.fly.dev/
