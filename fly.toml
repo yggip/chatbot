@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for chatbot-123456789 on 2024-02-27T13:44:40+08:00
+# fly.toml app configuration file generated for chatbot-12 on 2024-02-28T16:01:23+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'chatbot-123456789'
+app = 'chatbot-12'
 primary_region = 'hkg'
 
 [build]
@@ -30,4 +30,6 @@ primary_region = 'hkg'
 	port = 443
 
 [[vm]]
-  size = 'shared-cpu-1x'
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
